@@ -1,0 +1,72 @@
+{% extends 'adminnavbar.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="\static\css\assignbook.css"/>
+{% endblock %}
+{% block content %}
+<form method="post" action="assign_book">
+    {% csrf_token %}
+<div class="container px-4 py-5 mx-auto">
+    <div class="card card0">
+        <div class="d-flex flex-lg-row flex-column-reverse">
+            <div class="card card1">
+                <div class="row justify-content-center my-auto">
+                    <div class="col-md-8 col-10 my-5">
+                        {% if std %}
+                        <h4 style="color:red">THE STUDENT NAME IS NOT REGISTERED</h4>
+                        {% endif %}
+
+                        {% if data %}
+                        <h4 style="color:green">BOOK ASSIGNED SUCCESSFULLY</h4>
+                        {% endif %}
+
+
+                        <h2 class="msg-info">ASSIGN BOOK</h2>
+
+                        <div class="form-group">
+                            <label class="form-control-label text-muted">Student Name</label>
+                            <input type="text"  name="name" placeholder="Enter Student Name" class="form-control">
+                        </div>
+
+                         <div class="form-group">
+                            <label class="form-control-label text-muted">Book Name</label>
+                           <select class="form-control" name="book">
+                             <option>--select Book--</option>
+                             {% for i in book %}
+                             <option>{{ i.bookname }}</option>
+                             {% endfor %}
+                           </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label text-muted">Start Date</label>
+                            <input type="date"  name="sdate" placeholder=" Start Date" class="form-control">
+                        </div>
+
+                       <div class="form-group">
+                            <label class="form-control-label text-muted">End Date</label>
+                            <input type="date"  name="edate" placeholder=" End Date" class="form-control">
+                        </div>
+
+                        <div class="row justify-content-center my-3 px-3">
+                            <button class="btn-block btn-color">ASSIGN</button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card card2">
+                <div class="my-auto mx-md-5 px-md-5 right">
+                    <img align=center width="150%" src="\static\image\img_1.png"/>
+
+                    <h2 class="text-white">BOOKS ARE PATH FOR A SUCCESS </h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'adminnavbar.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="\static\css\admin_add.css"/>
+{% endblock %}
+{% block content %}
+<div class="background-wrap">
+  <div class="background"></div>
+</div>
+
+<form id="accesspanel" action="" method="post">
+  {% csrf_token %}
+  {% if bname %}
+  <h1  style="color:red">The book name is already exist</h1>
+  {% endif %}
+
+  {% if save %}
+  <h1 style="color:green">The book details is saved successfully</h1>
+  {% endif %}
+
+  <h1 id="litheader">UPDATE <br/>BOOk DETAILS</h1>
+
+  <div class="inset">
+    <p>
+      <input type="text" name="book" value="{{ data.bookname }}" placeholder="Enter Book Name">
+    </p>
+    <p>
+      <input type="text" name="author" value="{{ data.authorname }}" placeholder="Enter Author Name">
+    </p>
+      <p>
+          <select name="branch">
+              <option style="color:white">{{ data.branch }}</option>
+            {% for i in branch %}
+              <option style="color:black">{{ i.branch }}</option>
+            {% endfor %}
+          </select>
+    </p>
+    <div style="text-align: center;">
+    <input class="loginLoginValue" type="hidden" name="service" value="login" />
+  </div>
+  <p class="p-container">
+    <input type="submit" name="Login" id="go" value="Update">
+  </p>
+</form>
+{% endblock %}

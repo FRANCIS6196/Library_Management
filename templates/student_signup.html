@@ -1,0 +1,34 @@
+{% extends 'navbar1.html' %}
+{% load static %}
+{% block extra_css %}
+<link href="\static\css\student_signup.css" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+<div class="container"> <div class="row"> <div class="col-md-6">
+    <div class="card"> <form method = "post" action="student_signup" class="box">
+        {% csrf_token %}
+        <h1>student signup</h1>
+        {% if nameif %}
+				<h4 style="color:red">The student name is already exists</h4>
+        {% endif %}
+        {% if emailif %}
+				<h4 style="color:red">The student email is already exists</h4>
+        {% endif %}
+        <p class="text-muted"> Please enter your details!</p>
+    <input type="text" name="name"  required="required" placeholder="Username">
+
+        <input type="password"  required="required" name="password" placeholder="Password">
+    <input type="tel" name="phno"  required="required" placeholder="PhoneNumber">
+    <input type="number" name="semester" min = "1" max= "8" required="required" placeholder="Semester">
+        <select name="branch">
+            <option>--Select Branch--</option>
+            {% for i in data %}
+             <option style="color:red">{{ i.branch }}</option>
+            {% endfor %}
+        </select>
+
+
+    <input type="submit" value="SIGNUP"/>
+</form> </div> </div> </div>
+</div>
+{% endblock %}

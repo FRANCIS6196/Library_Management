@@ -1,0 +1,35 @@
+{% extends 'studentnavbar.html' %}
+{% load static %}
+{% block extra_css %}
+<link href="\static\css\studentupdate.css" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+<div class="container"> <div class="row"> <div class="col-md-6">
+    <div class="card">
+        <form method = "post" class="box">
+        {% csrf_token %}
+        <h1>EDIT PROFILE</h1>
+        <p style="color:white"> Please edit your details!</p>
+        NAME
+    <input type="text" name="upname" value="{{std.name}}" required="required" placeholder="Username">
+        PASSWORD
+
+        <input type="text" value="{{std.password}}" required="required" name="uppassword" placeholder="Password">
+        PHONE NUMBER
+    <input type="tel" name="upphno" value="{{std.phno}}" required="required" placeholder="PhoneNumber">
+        SEMESTER
+    <input type="number" name="upsemester" value="{{std.semester}}" min = "1" max= "8" required="required" placeholder="Semester">
+        BRANCH
+        <select name="upbranch">
+            <option>{{ std.branch }}</option>
+            {% for i in data %}
+             <option style="color:purple">{{ i.branch }}</option>
+            {% endfor %}
+        </select>
+
+
+    <input type="submit" value="UPDATE"/>
+</form> </div> </div> </div>
+</div>
+{% endblock %}
+

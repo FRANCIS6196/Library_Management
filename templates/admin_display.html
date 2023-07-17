@@ -1,0 +1,27 @@
+{% extends 'adminnavbar.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="\static\css\"/>
+{% endblock %}
+{% block content %}
+<table width="100%" align="center">
+<tr class="bg-danger">
+  <th>ID</th>
+  <th>BOOK NAME</th>
+  <th>AUTHOR NAME</th>
+  <th>BRANCH</th>
+  <th>UPDATE</th>
+  <th>DELETE</th>
+</tr>
+{% for i in data %}
+<tr>
+  <td class="bg-warning">{{ i.id }}</td>
+  <td class="bg-warning">{{ i.bookname }}</td>
+  <td class="bg-warning">{{ i.authorname }}</td>
+  <td class="bg-warning">{{ i.branch }}</td>
+  <td class="bg-warning"><a href="{% url 'book_update' i.id %}">Update</a></td>
+  <td class="bg-warning"><a href="{% url 'book_delete' i.id %}">Delete</a></td>
+</tr>
+  {% endfor %}
+</table>
+{% endblock %}

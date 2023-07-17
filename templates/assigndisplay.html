@@ -1,0 +1,28 @@
+{% extends 'adminnavbar.html' %}
+{% load static %}
+{% block extra_css %}
+{% endblock %}
+{% block content %}
+<table width="100%" align="center">
+<tr class="bg-dark">
+  <th style="color:red">ID</th>
+  <th style="color:yellow">STUDENT NAME</th>
+  <th style="color:yellow">BOOk NAME</th>
+  <th style="color:yellow">START DATE</th>
+  <th style="color:yellow">END DATE</th>
+  <th style="color:yellow">UPDATE</th>
+  <th style="color:red">DELETE</th>
+</tr>
+{% for i in data %}
+<tr>
+  <td style="color:pink" class="bg-secondary">{{ i.id }}</td>
+  <td style="color:pink" class="bg-secondary">{{ i.student_name }}</td>
+  <td style="color:pink" class="bg-secondary">{{ i.book_name }}</td>
+  <td style="color:pink" class="bg-secondary">{{ i.start_date }}</td>
+  <td style="color:pink" class="bg-secondary">{{ i.end_date }}</td>
+  <td style="color:pink" class="bg-secondary"><a href="{% url 'assigned_update' i.id %}" style="color:yellow">Update</a></td>
+  <td style="color:pink" class="bg-secondary"><a href="{% url 'assigned_delete' i.id %}" style="color:red">Delete</a></td>
+</tr>
+  {% endfor %}
+</table>
+{% endblock %}
